@@ -20,8 +20,7 @@ while i< len(results) : # liste des lien vers les catégories des articles
     
     k=0
     while k < len(resultsArticles) :
-    #while k < 6 :
-        print('\n \n')
+    #while k < 1 :
         r2 = requests.get(resultsArticles[k].get('href'))
         soup2 = BeautifulSoup(r2.text,'html.parser')
 
@@ -38,11 +37,10 @@ while i< len(results) : # liste des lien vers les catégories des articles
         if len(sousTitre.contents) > 1 :
             auteur = sousTitre.contents[0].next_sibling
             ISSN = auteur.next_sibling
-            
-            #print(auteur.text)
+
+            print(auteur.text)
         else :
             ISSN = sousTitre.contents[0]
-
         
         if len(ISSN) > 30 :
             ISSN_printed = ISSN.string[20:29]
@@ -58,18 +56,16 @@ while i< len(results) : # liste des lien vers les catégories des articles
         
         j=0
         while j < len(InfoLinks) :
-            #print(InfoLinks[j].get('href'))
+            print(InfoLinks[j].get('href'))
             j=j+1
 
         j=0
         while j < len(categoryLinks) :
-            #print(categoryLinks[j].get('href'))
+            print(categoryLinks[j].get('href'))
             j=j+1
 
-        #print(titre.text.encode("utf-8"))
-        
-        
-        #print(description.text)
+        print(titre.contents[0].string)
+        print(description.string)
         k=k+1
     print(len(resultsArticles))
 
